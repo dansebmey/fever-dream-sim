@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnhke424rd7uj"]
+
+[ext_resource type="Texture2D" uid="uid://dfn0crwtenetg" path="res://sprites/body.png" id="1_7kigb"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_gq3ec"]
+[ext_resource type="PackedScene" uid="uid://b5c3d8uasexct" path="res://prefabs/spring.tscn" id="2_mn0gn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_11hhg"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oudek"]
+radius = 39.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_gq3ec")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_11hhg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_oudek")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7kigb")
+
+[node name="Spring_Right" parent="Sprite2D" instance=ExtResource("2_mn0gn")]
+
+[node name="Spring_Bottom" parent="Sprite2D" instance=ExtResource("2_mn0gn")]
+rotation = 1.5708
+ANIM_NAME = "jump_down"
+
+[node name="Spring_Left" parent="Sprite2D" instance=ExtResource("2_mn0gn")]
+rotation = 3.14159
+ANIM_NAME = "jump_left"
+
+[node name="Spring_Top" parent="Sprite2D" instance=ExtResource("2_mn0gn")]
+rotation = 4.71239
+ANIM_NAME = "jump_up"
